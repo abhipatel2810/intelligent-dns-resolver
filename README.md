@@ -20,7 +20,8 @@ An ML-powered DNS resolver with **Prometheus**, **Grafana**, and **Locust** for 
    ```bash
    ./start.ps1
    ```
-   ```Is using MAC : Permission
+   **Is using MAC : Permission**
+   ```bash
    chmod +x start1.sh
    ```
 ---
