@@ -11,7 +11,7 @@ An ML-powered DNS resolver with **Prometheus**, **Grafana**, and **Locust** for 
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/YOUR_USERNAME/intelligent-dns-resolver.git
+   git clone https://github.com/abhipatel2810/intelligent-dns-resolver.git
    cd intelligent-dns-resolver
    ```
 
@@ -27,7 +27,6 @@ An ML-powered DNS resolver with **Prometheus**, **Grafana**, and **Locust** for 
 
 * **Grafana Dashboard**: [http://localhost:3000](http://localhost:3000)
 * **Prometheus Console**: [http://localhost:9090](http://localhost:9090)
-* **DNS Resolver API**: [http://localhost:8053/resolve](http://localhost:8053/resolve)
   Example:
 
   ```
@@ -77,6 +76,14 @@ Visit [http://localhost:9090](http://localhost:9090) and run:
   ```promql
   rate(dns_resolver_errors_total[1m])
   ```
+
+###1. Query Rate Over Time : rate(dns_queries_total[1m])
+###2. 95th percentile DNS round trip time:histogram_quantile(0.95, sum(rate(dns_upstream_rtt_seconds_bucket[5m])) by (le, upstream))
+###3. Cache Hit Ratio:sum(rate(dns_cache_hits_total[5m])) / sum(rate(dns_queries_total[5m])) * 100
+###4. Resolver Errors : rate(dns_resolver_errors_total[1m])
+
+
+
 
 ---
 
