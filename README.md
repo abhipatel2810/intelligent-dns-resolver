@@ -141,5 +141,3 @@ Ensure:
 Enjoy the **Intelligent DNS Resolver with Real-Time Monitoring and Load Testing**.
 
 ---
-
-Let me know if you'd like to include **license**, **contributor guidelines**, or **badges**.
