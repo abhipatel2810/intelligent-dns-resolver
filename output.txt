@@ -1,0 +1,446 @@
+PS C:\Users\abhip\OneDrive\Documents\Rutgers Study\SEM_3\INTERNET_SERVICES\final_project\intelligent-dns-resolver> .\venv\Scripts\activate
+(venv) PS C:\Users\abhip\OneDrive\Documents\Rutgers Study\SEM_3\INTERNET_SERVICES\final_project\intelligent-dns-resolver> docker-compose up -d   
+time="2025-04-29T13:36:31-04:00" level=warning msg="C:\\Users\\abhip\\OneDrive\\Documents\\Rutgers Study\\SEM_3\\INTERNET_SERVICES\\final_project\\intelligent-dns-resolver\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+[+] Running 0/1
+ - Network intelligent-dn[+] Running 1/3et  Creati
+ ✔ Network intelligent-dns-resolver_dnsnet        
+  Created0.1s
+ - Container intelligent-dns-resolver-grafana-1   [+] Running 1/3
+ ✔ Network intelligent-dns-resolver_dnsnet          Created0.1s 
+ - Container intelligent-dns-resolver-grafana-1   [+] Running 3/3
+ ✔ Network intelligent-dns-resolver_dnsnet          Created0.1s 
+ ✔ Container intelligent-dns-resolver-grafana-1   
+[+] Running 1/3
+ ✔ Network intelligent-dns-resolver_dnsnet          Created0.1s 
+ - Container intelligent-dns-resolver-grafana-1   [+] Running 1/3
+ ✔ Network intelligent-dns-resolver_dnsnet          Created0.1s 
+ - Container intelligent-dns-resolver-grafana-1   [+] Running 1/3
+ ✔ Network intelligent-dns-resolver_dnsnet          Created0.1s 
+ - Container intelligent-dns-resolver-grafana-1   [+] Running 1/3
+ ✔ Network intelligent-dns-resolver_dnsnet          Created0.1s 
+s-resolver_dnsnet          Created0.1s
+ - Container intelligent-dns-resolver-grafana-1     Starting0.8s
+ - Container intelligent-dns-resolver-prometheus-1  Starting0.8s
+Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint intelligent-dns-resolver-grafana-1 (4997c7443e12e5c16747315a43f0dc6eb66d7f88a45601254cb2ee13a916bddc): Bind for 0.0.0.0:3000 failed: port is already allocated
+(venv) PS C:\Users\abhip\OneDrive\Documents\Rutgers Study\SEM_3\INTERNET_SERVICES\final_project\intedocker-compose up -d>
+time="2025-04-29T13:38:25-04:00" level=warning msg="C:\\Users\\abhip\\OneDrive\\Documents\\Rutgers Study\\SEM_3\\INTERNET_SERVICES\\final_project\\intelligent-dns-resolver\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"                
+[+] Running 0/2
+ - Container intelligent-dns-resolver-prometheus-1  Starting             0.5s 
+ - Container intelligent-dns-resolver-grafana-1     Starting             0.5s 
+Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint intelligent-dns-resolver-prometheus-1 (09254a08ae11483c06369c3d582ecc94da2c33ab6a56e0593cf64545c60f76ba): Bind for 0.0.0.0:9090 failed: port is already allocated
+(venv) PS C:\Users\abhip\OneDrive\Documents\Rutgers Study\SEM_3\INTERNET_SERVICES\final_project\intelligent-dns-resolver> docker ps
+CONTAINER ID   IMAGE             COMMAND                  CREATED          STATUS          PORTS                    NAMES
+31f2bd50cf2d   grafana/grafana   "/run.sh"                21 minutes ago   Up 21 minutes   0.0.0.0:3000->3000/tcp   final_project-grafana-1
+d53a9c268c7a   prom/prometheus   "/bin/prometheus --c…"   21 minutes ago   Up 21 minutes   0.0.0.0:9090->9090/tcp   final_project-prometheus-1
+(venv) PS C:\Users\abhip\OneDrive\Documents\Rutgers Study\SEM_3\INTERNET_SERVICES\final_project\intelligent-dns-resolver> curl "http://127.0.0.1:8053/resolve?domain=example.com&type=A"
+
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : {"answers":["96.7.128.175","23.215.0.138","23.215.0.136", 
+                    "23.192.228.80","23.192.228.84","96.7.128.198"],"domain": 
+                    "example.com","type":"A","upstream":"Cloudflare"}
+
+RawContent        : HTTP/1.1 200 OK
+                    Connection: close
+                    Content-Length: 164
+wers":["96.7.128.175","23.215...
+Forms             : {}
+Headers           : {[Connection, close], [Content-Length, 164],                                                                                                                                                                            [Content-Type, application/json], [Date, Tue, 29 Apr                                                                                                                                                                    2025 17:41:39 GMT]...}                                                                                                                                                                              Images            : {}                                                                                                                                                                                                  
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 164
+
+
+
+(venv) PS C:\Users\abhip\OneDrive\Documents\curl "http://127.0.0.1:8053/resolve?domain=google.com&type=A"nt-dns-resolver>
+
+
+StatusCode        : 200                                                                                                                                                                                                 StatusDescription : OK                                                                                                                                                                                                  Content           : {"answers":["142.250.64.78"],"domain":"google.com","type":"A","upstream":"Cloudflare"}                                                                                                                                                                                                                                                                                                                                      
+RawContent        : HTTP/1.1 200 OK
+                    Connection: close
+                    Content-Length: 87
+                    Content-Type: application/json
+                    Date: Tue, 29 Apr 2025 19:37:53 GMT
+                    Server: Werkzeug/3.1.3 Python/3.12.3
+
+                    {"answers":["142.250.64.78"],"domai...
+Forms             : {}
+Headers           : {[Connection, close], [Content-Length, 87], [Content-Type, application/json], [Date, Tue, 29 Apr 2025 19:37:53 GMT]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 87
+
+
+
+(venv) PS C:\Users\abhip\OneDrive\Documents\Rutgers Study\SEM_3\INTERNET_SERVICES\final_project\intelligent-dns-resolver> curl "http://127.0.0.1:8053/resolve?domain=google.com&type=AAAA"
+
+
+StatusCode        : 200                                                                                                                                                                                                 StatusDescription : OK                                                                                                                                                                                                  Content           : {"answers":["2607:f8b0:4006:817::200e"],"domain":"google.com","type":"AAAA","upstream":"Cloudflare"}                                                                                                                                                                                                                                                                                                                        
+RawContent        : HTTP/1.1 200 OK
+                    Connection: close
+                    Content-Length: 101
+                    Content-Type: application/json
+                    Date: Tue, 29 Apr 2025 19:39:06 GMT
+                    Server: Werkzeug/3.1.3 Python/3.12.3
+
+                    {"answers":["2607:f8b0:4006:817::2...
+Forms             : {}
+Headers           : {[Connection, close], [Content-Length, 101], [Content-Type, application/json], [Date, Tue, 29 Apr 2025 19:39:06 GMT]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 101
+
+
+
+(venv) PS C:\Users\abhip\OneDrive\Documents\Rutgers Study\SEM_3\INTERNET_SERVICES\final_project\intelligent-dns-resolver> curl "http://127.0.0.1:8053/resolve?domain=google.com&type=AAAA"
+
+
+StatusCode        : 200                                                                                                                                                                                                 StatusDescription : OK                                                                                                                                                                                                  Content           : {"answers":["2607:f8b0:4006:817::200e"],"domain":"google.com","type":"AAAA","upstream":"CACHE"}                                                                                                                                                                                                                                                                                                                             
+RawContent        : HTTP/1.1 200 OK
+                    Connection: close
+                    Content-Length: 96
+                    Content-Type: application/json
+                    Date: Tue, 29 Apr 2025 19:39:24 GMT
+                    Server: Werkzeug/3.1.3 Python/3.12.3
+
+                    {"answers":["2607:f8b0:4006:817::20...
+Forms             : {}
+Headers           : {[Connection, close], [Content-Length, 96], [Content-Type, application/json], [Date, Tue, 29 Apr 2025 19:39:24 GMT]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 96
+
+
+
+(venv) PS C:\Users\abhip\OneDrive\Documents\Rutgers Study\SEM_3\INTERNET_SERVICES\final_project\intelligent-dns-resolver> curl "http://127.0.0.1:8053/resolve?domain=example.com&type=MX"
+
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : {"answers":["0 ."],"domain":"example.com","type":"MX","upstream":"Cloudflare"}
+
+RawContent        : HTTP/1.1 200 OK
+                    Connection: close
+                    Content-Length: 79
+                    Content-Type: application/json
+                    Date: Tue, 29 Apr 2025 19:40:26 GMT
+                    Server: Werkzeug/3.1.3 Python/3.12.3
+
+                    {"answers":["0 ."],"domain":"exampl...
+Forms             : {}
+Headers           : {[Connection, close], [Content-Length, 79], [Content-Type, application/json], [Date, Tue, 29 Apr 2025 19:40:26 GMT]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 79
+
+(venv) PS C:\Users\abhip\OneDrive\Documents\Rutgers Study\SEM_3\INTERNET_SERVICES\final_project\intelligent-dns-resolver> curl "http://127.0.0.1:8053/resolve?domain=www.amazon.com&type=CNAME"
+
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : {"answers":["tp.47cf2c8c9-frontier.amazon.com."],"domain":"www.amazon.com","type":"CNAME","upstream":"Cloudflare"}
+
+RawContent        : HTTP/1.1 200 OK
+                    Connection: close
+                    Content-Length: 115
+                    Content-Type: application/json
+                    Date: Tue, 29 Apr 2025 19:44:58 GMT
+                    Server: Werkzeug/3.1.3 Python/3.12.3
+
+                    {"answers":["tp.47cf2c8c9-frontier...
+Forms             : {}
+Headers           : {[Connection, close], [Content-Length, 115], [Content-Type, application/json], [Date, Tue, 29 Apr 2025 19:44:58 GMT]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : mshtml.HTMLDocumentClass
+RawContentLength  : 115
+
+
+
+
+=======================================
+LOCUST
+=======================================
+(venv) PS C:\Users\abhip\OneDrive\Documents\Rutgers Study\SEM_3\INTERNET_SERVICES\final_project\intelligent-dns-resolver> locust -f locustfile.py --headless -u 200 -r 20 --run-time 1m --host http://localhost:8053
+[2025-04-29 23:11:19,555] BOOK-SRFRTRN74D/INFO/locust.main: Starting Locust 2.36.2 (locust-cloud 1.20.7)
+[2025-04-29 23:11:19,556] BOOK-SRFRTRN74D/INFO/locust.main: Run time limit set to 60 seconds
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                       0     0(0.00%) |      0       0       0      0 |    0.00        0.00
+
+[2025-04-29 23:11:19,557] BOOK-SRFRTRN74D/INFO/locust.runners: Ramping to 200 users at a rate of 20.00 per second
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                              45     0(0.00%) |     35       4      69     41 |    0.00        0.00
+GET      /resolve?domain=example.com&type=MX                             10     0(0.00%) |     29       4      67     15 |    0.00        0.00
+GET      /resolve?domain=www.amazon.com&type=CNAME                       23     0(0.00%) |     37       4      76     39 |    0.00        0.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                      78     0(0.00%) |     34       4      76     39 |    0.00        0.00
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                             125     0(0.00%) |     23       4      69     11 |   17.00        0.00
+GET      /resolve?domain=example.com&type=MX                             43     0(0.00%) |     18       4      67      8 |    3.50        0.00
+GET      /resolve?domain=www.amazon.com&type=CNAME                       69     0(0.00%) |     23       4      76     12 |    8.50        0.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                     237     0(0.00%) |     22       4      76      9 |   29.00        0.00
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                             241   70(29.05%) |     22       3     112     11 |   26.00        0.00
+GET      /resolve?domain=example.com&type=MX                             68   11(16.18%) |     21       3      67     12 |    8.25        0.00
+GET      /resolve?domain=www.amazon.com&type=CNAME                      157   43(27.39%) |     22       3     128     10 |   14.75        0.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                     466  124(26.61%) |     22       3     128     11 |   49.00        0.00
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                             397  221(55.67%) |     21       3     112     13 |   34.17        5.67
+GET      /resolve?domain=example.com&type=MX                            125   66(52.80%) |     22       3      69     14 |   10.67        1.17
+GET      /resolve?domain=www.amazon.com&type=CNAME                      262  148(56.49%) |     21       3     128     13 |   22.67        3.67
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                     784  435(55.48%) |     21       3     128     13 |   67.50       10.50
+
+[2025-04-29 23:11:28,608] BOOK-SRFRTRN74D/INFO/locust.runners: All users spawned: {"DNSUser": 200} (200 total users)
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                             607  431(71.00%) |     22       3     112     13 |   44.00       22.00
+GET      /resolve?domain=example.com&type=MX                            186  127(68.28%) |     25       3      92     15 |   14.12        6.75
+GET      /resolve?domain=www.amazon.com&type=CNAME                      379  265(69.92%) |     23       3     128     14 |   28.38       14.12
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    1172  823(70.22%) |     23       3     128     14 |   86.50       42.88
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                             797  619(77.67%) |     22       3     112     14 |   55.60       38.00
+GET      /resolve?domain=example.com&type=MX                            271  212(78.23%) |     22       3      92     14 |   16.60       10.70
+GET      /resolve?domain=www.amazon.com&type=CNAME                      501  386(77.05%) |     22       3     128     15 |   34.20       22.80
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    1569 1217(77.57%) |     22       3     128     14 |  106.40       71.50
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                             993  815(82.07%) |     21       3     112     15 |   69.80       55.40
+GET      /resolve?domain=example.com&type=MX                            349  290(83.09%) |     20       3      92     14 |   24.00       18.80
+GET      /resolve?domain=www.amazon.com&type=CNAME                      627  512(81.66%) |     21       3     128     14 |   45.30       35.50
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    1969 1617(82.12%) |     21       3     128     14 |  139.10      109.70
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            1178 1000(84.89%) |     20       3     112     14 |   82.10       74.70
+GET      /resolve?domain=example.com&type=MX                            422  363(86.02%) |     20       3      92     14 |   29.30       26.70
+GET      /resolve?domain=www.amazon.com&type=CNAME                      755  640(84.77%) |     20       3     128     14 |   53.60       48.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    2355 2003(85.05%) |     20       3     128     14 |  165.00      149.40
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            1376 1195(86.85%) |     19       3     112     14 |   91.30       90.60
+GET      /resolve?domain=example.com&type=MX                            497  436(87.73%) |     19       3      92     14 |   33.10       32.90
+GET      /resolve?domain=www.amazon.com&type=CNAME                      879  763(86.80%) |     19       3     128     14 |   58.60       58.50
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    2752 2394(86.99%) |     19       3     128     14 |  183.00      182.00
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            1555 1372(88.23%) |     19       3     112     15 |   96.40       95.90
+GET      /resolve?domain=example.com&type=MX                            560  498(88.93%) |     19       3      92     14 |   36.20       36.00
+GET      /resolve?domain=www.amazon.com&type=CNAME                     1024  907(88.57%) |     19       3     128     15 |   61.00       60.80
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    3139 2777(88.47%) |     19       3     128     15 |  193.60      192.70
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            1748 1547(88.50%) |     19       3     112     15 |   93.70       93.00
+GET      /resolve?domain=example.com&type=MX                            619  553(89.34%) |     19       3      92     15 |   37.70       37.40
+GET      /resolve?domain=www.amazon.com&type=CNAME                     1165 1038(89.10%) |     19       3     128     15 |   63.20       62.90
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    3532 3138(88.84%) |     19       3     128     15 |  194.60      193.30
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            1934 1688(87.28%) |     20       3     137     15 |   95.70       94.00
+GET      /resolve?domain=example.com&type=MX                            686  597(87.03%) |     20       3     125     15 |   35.10       34.40
+GET      /resolve?domain=www.amazon.com&type=CNAME                     1293 1137(87.94%) |     20       3     145     15 |   64.00       63.30
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    3913 3422(87.45%) |     20       3     145     15 |  194.80      191.70
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            2128 1803(84.73%) |     20       3     137     15 |   96.10       89.60
+GET      /resolve?domain=example.com&type=MX                            744  634(85.22%) |     20       3     125     15 |   34.50       31.80
+GET      /resolve?domain=www.amazon.com&type=CNAME                     1428 1221(85.50%) |     20       3     145     15 |   65.00       61.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    4300 3658(85.07%) |     20       3     145     15 |  195.60      182.40
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            2322 1906(82.08%) |     19       3     137     15 |   95.60       81.70
+GET      /resolve?domain=example.com&type=MX                            800  669(83.62%) |     19       3     125     15 |   32.80       27.80
+GET      /resolve?domain=www.amazon.com&type=CNAME                     1567 1281(81.75%) |     20       3     145     15 |   66.40       57.40
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    4689 3856(82.24%) |     19       3     145     15 |  194.80      166.90
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            2528 1935(76.54%) |     19       3     137     15 |   94.60       73.20
+GET      /resolve?domain=example.com&type=MX                            869  683(78.60%) |     19       3     125     15 |   30.20       23.60
+GET      /resolve?domain=www.amazon.com&type=CNAME                     1692 1299(76.77%) |     19       3     145     15 |   69.50       54.20
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    5089 3917(76.97%) |     19       3     145     15 |  194.30      151.00
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            2724 1935(71.04%) |     19       3     137     14 |   98.00       61.40
+GET      /resolve?domain=example.com&type=MX                            925  683(73.84%) |     19       3     125     15 |   29.80       19.50
+GET      /resolve?domain=www.amazon.com&type=CNAME                     1835 1299(70.79%) |     19       3     145     14 |   67.60       43.30
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    5484 3917(71.43%) |     19       3     145     14 |  195.40      124.20
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            2908 1938(66.64%) |     18       3     137     14 |   97.50       44.10
+GET      /resolve?domain=example.com&type=MX                           1007  684(67.92%) |     18       3     125     14 |   30.50       15.10
+GET      /resolve?domain=www.amazon.com&type=CNAME                     1964 1300(66.19%) |     18       3     145     14 |   68.40       31.10
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    5879 3922(66.71%) |     18       3     145     14 |  196.40       90.30
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            3115 1938(62.22%) |     19       3     137     14 |   96.30       29.50
+GET      /resolve?domain=example.com&type=MX                           1064  684(64.29%) |     19       3     125     14 |   30.80        9.90
+GET      /resolve?domain=www.amazon.com&type=CNAME                     2088 1300(62.26%) |     18       3     145     14 |   67.40       21.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    6267 3922(62.58%) |     19       3     145     14 |  194.50       60.40
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            3313 1938(58.50%) |     20       3     137     14 |   97.40       18.10
+GET      /resolve?domain=example.com&type=MX                           1131  684(60.48%) |     19       3     125     14 |   32.70        7.00
+GET      /resolve?domain=www.amazon.com&type=CNAME                     2225 1300(58.43%) |     19       3     145     14 |   66.30       11.90
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    6669 3922(58.81%) |     19       3     145     14 |  196.40       37.00
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            3504 1938(55.31%) |     20       3     137     14 |   97.90        7.10
+GET      /resolve?domain=example.com&type=MX                           1187  684(57.62%) |     20       3     125     14 |   33.10        3.40
+GET      /resolve?domain=www.amazon.com&type=CNAME                     2345 1300(55.44%) |     20       3     145     14 |   64.90        3.70
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    7036 3922(55.74%) |     20       3     145     14 |  195.90       14.20
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            3690 1938(52.52%) |     20       3     144     15 |   96.40        1.40
+GET      /resolve?domain=example.com&type=MX                           1246  684(54.90%) |     21       3     133     15 |   33.00        0.80
+GET      /resolve?domain=www.amazon.com&type=CNAME                     2486 1300(52.29%) |     21       3     145     15 |   66.30        1.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    7422 3922(52.84%) |     21       3     145     15 |  195.70        3.20
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            3900 1938(49.69%) |     20       3     144     14 |   95.70        0.30
+GET      /resolve?domain=example.com&type=MX                           1294  684(52.86%) |     21       3     133     15 |   32.50        0.10
+GET      /resolve?domain=www.amazon.com&type=CNAME                     2628 1300(49.47%) |     20       3     145     14 |   64.60        0.10
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    7822 3922(50.14%) |     20       3     145     15 |  192.80        0.50
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            4097 1938(47.30%) |     20       3     144     14 |   97.80        0.00
+GET      /resolve?domain=example.com&type=MX                           1354  684(50.52%) |     20       3     133     15 |   30.00        0.00
+GET      /resolve?domain=www.amazon.com&type=CNAME                     2755 1300(47.19%) |     20       3     145     14 |   66.40        0.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    8206 3922(47.79%) |     20       3     145     14 |  194.20        0.00
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            4299 1938(45.08%) |     19       3     144     14 |   97.90        0.00
+GET      /resolve?domain=example.com&type=MX                           1430  684(47.83%) |     20       3     133     14 |   28.00        0.00
+GET      /resolve?domain=www.amazon.com&type=CNAME                     2866 1300(45.36%) |     20       3     145     14 |   66.40        0.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    8595 3922(45.63%) |     20       3     145     14 |  192.30        0.00
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            4497 1938(43.10%) |     20       3     144     14 |   99.50        0.00
+GET      /resolve?domain=example.com&type=MX                           1499  684(45.63%) |     20       3     133     14 |   29.70        0.00
+GET      /resolve?domain=www.amazon.com&type=CNAME                     2994 1300(43.42%) |     20       3     145     14 |   64.20        0.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    8990 3922(43.63%) |     20       3     145     14 |  193.40        0.00
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            4700 1938(41.23%) |     20       3     144     14 |   98.40        0.00
+GET      /resolve?domain=example.com&type=MX                           1559  684(43.87%) |     20       3     133     14 |   30.30        0.00
+GET      /resolve?domain=www.amazon.com&type=CNAME                     3130 1300(41.53%) |     20       3     145     14 |   63.80        0.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    9389 3922(41.77%) |     20       3     145     14 |  192.50        0.00
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            4901 1938(39.54%) |     19       3     144     14 |  100.50        0.00
+GET      /resolve?domain=example.com&type=MX                           1626  684(42.07%) |     19       3     133     14 |   31.20        0.00
+GET      /resolve?domain=www.amazon.com&type=CNAME                     3258 1300(39.90%) |     19       3     145     14 |   64.60        0.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                    9785 3922(40.08%) |     19       3     145     14 |  196.30        0.00
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            5090 1938(38.07%) |     19       3     144     14 |  100.70        0.00
+GET      /resolve?domain=example.com&type=MX                           1678  684(40.76%) |     19       3     133     14 |   32.00        0.00
+GET      /resolve?domain=www.amazon.com&type=CNAME                     3412 1300(38.10%) |     19       3     145     14 |   62.40        0.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                   10180 3922(38.53%) |     19       3     145     14 |  195.10        0.00
+
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            5264 1938(36.82%) |     19       3     144     14 |   98.50        0.00
+GET      /resolve?domain=example.com&type=MX                           1749  684(39.11%) |     19       3     133     14 |   32.60        0.00
+GET      /resolve?domain=www.amazon.com&type=CNAME                     3546 1300(36.66%) |     19       3     145     14 |   64.60        0.00
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                   10559 3922(37.14%) |     19       3     145     14 |  195.70        0.00
+
+[2025-04-29 23:12:18,460] BOOK-SRFRTRN74D/INFO/locust.main: --run-time limit reached, shutting down
+[2025-04-29 23:12:18,843] BOOK-SRFRTRN74D/INFO/locust.main: Shutting down (exit code 1)
+Type     Name                                                        # reqs      # fails |    Avg     Min     Max    Med |   req/s  failures/s
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+GET      /resolve?domain=example.com&type=A                            5336 1938(36.32%) |     19       3     144     14 |   90.63       32.92
+GET      /resolve?domain=example.com&type=MX                           1767  684(38.71%) |     19       3     133     14 |   30.01       11.62
+GET      /resolve?domain=www.amazon.com&type=CNAME                     3594 1300(36.17%) |     19       3     145     14 |   61.04       22.08
+--------|----------------------------------------------------------|-------|-------------|-------|-------|-------|-------|--------|-----------
+         Aggregated                                                   10697 3922(36.66%) |     19       3     145     14 |  181.69       66.61
+
+Response time percentiles (approximated)
+Type     Name                                                                50%    66%    75%    80%    90%    95%    98%    99%  99.9% 99.99%   100% # reqs
+--------|--------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+GET      /resolve?domain=example.com&type=A                                   14     19     23     26     38     57     81     97    130    140    140   5336
+GET      /resolve?domain=example.com&type=MX                                  14     19     23     26     39     56     86     96    130    130    130   1767
+GET      /resolve?domain=www.amazon.com&type=CNAME                            14     19     23     26     39     55     83     97    140    150    150   3594
+--------|--------------------------------------------------------------|--------|------|------|------|------|------|------|------|------|------|------|------
+         Aggregated                                                           14     19     23     26     39     56     82     97    130    150    150  10697
+
+Error report
+# occurrences      Error
+------------------|---------------------------------------------------------------------------------------------------------------------------
+1300               GET /resolve?domain=www.amazon.com&type=CNAME: OSError(10048, '[WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.')
+1938               GET /resolve?domain=example.com&type=A: OSError(10048, '[WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.')
+684                GET /resolve?domain=example.com&type=MX: OSError(10048, '[WinError 10048] Only one usage of each socket address (protocol/network address/port) is normally permitted.')
+------------------|---------------------------------------------------------------------------------------------------------------------------
+
+(venv) PS C:\Users\abhip\OneDrive\Documents\Rutgers Study\SEM_3\INTERNET_SERVICES\final_project\intelligent-dns-resolver>
+
+=======================================

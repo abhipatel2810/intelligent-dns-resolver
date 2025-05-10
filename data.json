@@ -1,0 +1,68 @@
+{
+    "dashboard": {
+      "id": null,
+      "title": "Intelligent DNS Resolver Metrics",
+      "timezone": "browser",
+      "schemaVersion": 37,
+      "version": 1,
+      "refresh": "5s",
+      "panels": [
+        {
+          "type": "timeseries",
+          "title": "Total DNS Queries",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "dns_queries_total",
+              "interval": "",
+              "refId": "A"
+            }
+          ],
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "type": "timeseries",
+          "title": "DNS Cache Hits",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "dns_cache_hits_total",
+              "interval": "",
+              "refId": "B"
+            }
+          ],
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 0
+          }
+        },
+        {
+          "type": "barchart",
+          "title": "Upstream Resolver Selections",
+          "datasource": "Prometheus",
+          "targets": [
+            {
+              "expr": "dns_upstream_selection_total",
+              "interval": "",
+              "refId": "C"
+            }
+          ],
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 8
+          }
+        }
+      ]
+    },
+    "overwrite": true
+  }
+  

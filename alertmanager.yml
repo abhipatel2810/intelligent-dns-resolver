@@ -1,0 +1,19 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: "email-gmail"
+  group_wait: 30s
+  group_interval: 1m
+  repeat_interval: 3h
+
+receivers:
+  - name: "email-gmail"
+    email_configs:
+      - to:      "abhipatel2707@gmail.com"           # abhipatel2707r alert destination
+        from:    "abhipatel2707@gmail.com"           # same as auth_username
+        smarthost: "smtp.gmail.com:587"
+        auth_username: "abhipatel2707@gmail.com"
+        auth_identity: "abhipatel2707@gmail.com"
+        auth_password: "abhiok4u"  # the 16-char app password
+        require_tls: true

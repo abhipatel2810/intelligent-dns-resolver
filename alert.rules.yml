@@ -1,0 +1,18 @@
+groups:
+  - name: dns_resolver_alerts
+    rules:
+      - alert: HighErrorRate
+        expr: increase(dns_resolver_errors_total[1m]) > 2
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          description: "High error rate in DNS resolver"
+
+      - alert: LowCacheHitRatio
+        expr: (rate(dns_cache_hits_total[1m]) / rate(dns_queries_total[1m])) < 0.3
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          description: "Cache hit ratio is below 30%"

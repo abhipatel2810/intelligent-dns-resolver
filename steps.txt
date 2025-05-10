@@ -1,0 +1,62 @@
+docker-compose down -v
+docker-compose build
+docker-compose up -d
+
+
+
+docker-compose down
+docker-compose up -d --build
+docker-compose restart prometheus
+docker build -t intelligent-dns .
+
+
+docker rm -f dns_prometheus_v2
+docker run -d `
+  -p 9090:9090 `
+  --name dns_prometheus_v2 `
+  -v "${PWD}\prometheus.yml:/etc/prometheus/prometheus.yml" `
+  prom/prometheus
+
+
+##=================================================##
+
+ locust -f locustfile.py --headless -u 200 -r 20 --run-time 1m --host http://localhost:8053
+##=================================================##
+
+http://host.docker.internal:9091/metrics
+
+##=================================================##
+
+
+
+for ($i=0; $i -lt 5; $i++) {
+    Invoke-RestMethod "http://localhost:8053/resolve?domain=www.amazon.com&type=CNAME" | Out-Null
+    Start-Sleep -Milliseconds 200
+}
+##=================================================##
+
+
+for ($i=0; $i -lt 5; $i++) {
+    Invoke-RestMethod "http://localhost:8053/resolve?domain=www.amazon.com&type=CNAME" | Out-Null
+    Start-Sleep -Milliseconds 200
+}
+##=================================================##
+
+
+host.docker.internal:9091
+
+
+
+
+##===================grafana=======================##
+
+http://localhost:3000
+
+
+In the left menu, click "⚙️ Configuration" > "Data Sources"
+
+Click "Add data source"
+
+Select Prometheus
+http://host.docker.internal:9090
+

@@ -1,0 +1,55 @@
+Create and activate your virtualenv
+==========================
+cd FINAL_PROJECT
+python3 -m venv venv
+source venv/bin/activate     # Linux / macOS
+venv\Scripts\Activate.ps1    # Windows PowerShell
+
+Install requirements
+============================
+pip install --upgrade pip
+pip install -r requirements.txt
+
+
+requirements.txt:
+=======================
+flask
+dnspython
+prometheus_client
+scikit-learn
+pandas
+numpy
+joblib
+locust
+
+src/ml_engine.py:
+===================
+import os
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder
+import joblib
+
+# 1) Load training data
+df = pd.read_csv("data/training_data.csv")
+
+# 2) Encode
+le_query_type   = LabelEncoder()
+le_best_upstream= LabelEncoder()
+df['query_type']    = le_query_type.fit_transform(df['query_type'])
+df['best_upstream'] = le_best_upstream.fit_transform(df['best_upstream'])
+
+# 3) Features & label
+X = df[['query_type','query_len','time_bucket','upstream_rtt','last_success_rate','ttl_variability']]
+y = df['best_upstream']
+
+# 4) Train
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X, y)
+
+# 5) Dump to disk
+os.makedirs("models", exist_ok=True)
+joblib.dump(model,               "models/ml_model.joblib")
+joblib.dump(le_query_type,       "models/le_query_type.joblib")
+joblib.dump(le_best_upstream,    "models/le_best_upstream.joblib")
+print("✅ Model trained & saved to models/")
