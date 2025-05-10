@@ -9,7 +9,7 @@ if [ -z "$PYTHON" ]; then
     exit 1
 fi
 
-echo "⏳ Setting up Python virtual environment..."
+echo "Setting up Python virtual environment..."
 if [ ! -d "venv" ]; then
     $PYTHON -m venv venv
 fi
