@@ -1,5 +1,3 @@
-Here is a properly **Markdown-formatted text** you can copy and paste directly into your GitHub README file:
-
 ---
 
 # Intelligent DNS Resolver with Live Monitoring
