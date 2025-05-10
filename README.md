@@ -92,7 +92,7 @@ Visit [http://localhost:9090](http://localhost:9090) and run:
 4. Set URL to:
 
    ```
-   http://host.docker.internal:9090
+   http://prometheus:9090
    ```
 5. Click **Save & Test**.
 
