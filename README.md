@@ -53,36 +53,29 @@ An ML-powered DNS resolver with **Prometheus**, **Grafana**, and **Locust** for 
 
 Visit [http://localhost:9090](http://localhost:9090) and run:
 
-* **DNS Query Rate**
+* **Query Rate Over Time**
 
   ```promql
-  rate(dns_queries_total[1m])
+  rate(dns_queries_total[1m]))
   ```
 
-* **Cache Hit Rate**
+* **95th percentile DNS round trip time**
 
   ```promql
-  100 * sum(rate(dns_cache_hits_total[1m])) / sum(rate(dns_queries_total[1m]))
+  histogram_quantile(0.95, sum(rate(dns_upstream_rtt_seconds_bucket[5m])) by (le, upstream))
   ```
 
-* **Upstream RTT Bucket**
+* **Cache Hit Ratio**
 
   ```promql
-  dns_upstream_rtt_seconds_bucket
+  sum(rate(dns_cache_hits_total[5m])) / sum(rate(dns_queries_total[5m])) * 100
   ```
 
-* **DNS Errors**
+* **Resolver Errors**
 
   ```promql
   rate(dns_resolver_errors_total[1m])
   ```
-
-###1. Query Rate Over Time : rate(dns_queries_total[1m])
-###2. 95th percentile DNS round trip time:histogram_quantile(0.95, sum(rate(dns_upstream_rtt_seconds_bucket[5m])) by (le, upstream))
-###3. Cache Hit Ratio:sum(rate(dns_cache_hits_total[5m])) / sum(rate(dns_queries_total[5m])) * 100
-###4. Resolver Errors : rate(dns_resolver_errors_total[1m])
-
-
 
 
 ---
@@ -108,6 +101,33 @@ Visit [http://localhost:9090](http://localhost:9090) and run:
 ```promql
 100 * (sum(rate(dns_cache_hits_total[1m]))) / (sum(rate(dns_queries_total[1m])))
 ```
+
+* **Query Rate Over Time**
+
+  ```promql
+  rate(dns_queries_total[1m]))
+  ```
+
+* **95th percentile DNS round trip time**
+
+  ```promql
+  histogram_quantile(0.95, sum(rate(dns_upstream_rtt_seconds_bucket[5m])) by (le, upstream))
+  ```
+
+* **Cache Hit Ratio**
+
+  ```promql
+  sum(rate(dns_cache_hits_total[5m])) / sum(rate(dns_queries_total[5m])) * 100
+  ```
+
+* **Resolver Errors**
+
+  ```promql
+  rate(dns_resolver_errors_total[1m])
+  ```
+
+
+
 
 #### Recommended Panel Settings:
 
