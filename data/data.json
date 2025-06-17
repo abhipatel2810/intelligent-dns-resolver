@@ -1,0 +1,20 @@
+{
+  "Google": {
+    "ip": "8.8.8.8",
+    "avg_rtt": 15.7,
+    "success_rate": 0.9,
+    "ttl_var": 0
+  },
+  "Cloudflare": {
+    "ip": "1.1.1.1",
+    "avg_rtt": 23.49,
+    "success_rate": 0.95,
+    "ttl_var": 0
+  },
+  "Quad9": {
+    "ip": "9.9.9.9",
+    "avg_rtt": 20.61,
+    "success_rate": 0.95,
+    "ttl_var": 0
+  }
+}

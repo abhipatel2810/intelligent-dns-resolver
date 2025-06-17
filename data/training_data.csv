@@ -1,0 +1,11 @@
+query_type,query_len,time_bucket,upstream_rtt,last_success_rate,ttl_variability,best_upstream
+A,12,2,22.5,1.0,0.1,Google
+AAAA,10,1,18.0,0.8,0.3,Cloudflare
+MX,14,3,26.5,1.0,0.2,Google
+CNAME,9,0,30.2,0.6,0.4,Quad9
+A,11,2,19.7,0.9,0.2,Cloudflare
+AAAA,8,1,17.2,0.85,0.25,Quad9
+CNAME,13,3,25.0,0.7,0.3,Cloudflare
+MX,15,0,29.5,0.9,0.15,Quad9
+A,10,2,21.0,0.95,0.12,Google
+AAAA,9,1,20.5,0.88,0.2,Google
